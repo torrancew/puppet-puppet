@@ -1,0 +1,18 @@
+# puppet Puppet Module
+
+The puppet module
+
+## Notes:
+
+## Usage:
+
+This module can be utilized in the conventional sense, meaning:
+
+    * include puppet
+
+Or any equivalent, such as via an ENC, etc.
+
+## Contributors:
+
+## TODO:
+

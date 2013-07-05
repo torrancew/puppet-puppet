@@ -1,0 +1,27 @@
+[main]
+  confdir = /etc/puppet
+  logdir  = /var/log/puppet
+  vardir  = /var/lib/puppet
+  ssldir  = /var/lib/puppet/ssl
+  rundir  = /var/run/puppet
+
+  report      = true
+  factpath    = $vardir/lib/facter
+  templatedir = $confdir/templates
+
+  server      = <%= @server %>
+  environment = <%= @environment %>
+  modulepath  = /etc/puppet/environments/$environment:/etc/puppet/modules
+
+<% if @master -%>
+[master]
+<% if @use_puppetdb -%>
+  storeconfigs         = true
+  storeconfigs_backend = puppetdb
+
+  reports = store,puppetdb
+<% else -%>
+  reports = store
+<% end # if @use_puppetdb -%>
+
+<% end # if @master-%>
