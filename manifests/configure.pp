@@ -45,6 +45,13 @@ class puppet::configure(
       group  => 'root',
       mode   => 0755;
 
+    '/etc/default/puppet':
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => 0644,
+      source => 'puppet:///modules/puppet/puppet.default';
+
     '/etc/puppet/puppet.conf':
       ensure  => file,
       owner   => 'root',
