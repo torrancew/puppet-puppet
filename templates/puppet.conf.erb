@@ -11,7 +11,7 @@
 
   server      = <%= @server %>
   environment = <%= @environment %>
-  modulepath  = /etc/puppet/environments/$environment:/etc/puppet/modules
+  modulepath  = /etc/puppet/environments/$environment/modules:/etc/puppet/modules
 
 <% if @master -%>
 [master]
