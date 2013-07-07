@@ -40,6 +40,7 @@ class puppet::params {
   $environment   = 'production'
   $puppetdb_host = 'puppetdb'
   $puppetdb_port = 8081
+  $use_foreman   = false
 
   ## Service Settings
   $service        = 'puppet'

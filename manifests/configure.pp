@@ -27,6 +27,7 @@ class puppet::configure(
   $server        = $puppet::params::server,
   $environment   = $puppet::params::environment,
   $master        = $puppet::params::master,
+  $use_foreman   = $puppet::params::use_foreman,
   $use_puppetdb  = $puppet::params::use_puppetdb,
   $puppetdb_host = $puppet::params::puppetdb_host,
   $puppetdb_port = $puppet::params::puppetdb_port,
@@ -34,6 +35,7 @@ class puppet::configure(
   Class['puppet::install'] -> Class['puppet::configure']
 
   validate_bool( $master )
+  validate_bool( $use_foreman )
   validate_bool( $use_puppetdb )
   validate_string( $environment )
   validate_string( $puppetdb_host )
