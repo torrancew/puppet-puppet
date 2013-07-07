@@ -21,8 +21,9 @@
   node_terminus  = exec
   external_nodes = /etc/puppet/foreman_node.rb
 
-<% end -%>
+<% end # if @use_foreman -%>
 <% if @use_puppetdb -%>
+  # PuppetDB Integration
   storeconfigs         = true
   storeconfigs_backend = puppetdb
 
