@@ -39,14 +39,15 @@ class puppet::service(
       name   => $service,
       ensure => running,
       enable => true;
+  }
 
-    'puppetmaster':
-      name   => $master_service,
-      enable => $master,
-      ensure => $master ? {
-        false => stopped,
-        true  => running,
-      };
+  if $master {
+    service {
+      'puppetmaster':
+        name   => $master_service,
+        ensure => running,
+        enable => true;
+    }
   }
 }
 
