@@ -28,6 +28,7 @@ class puppet::service(
   $service        = $puppet::params::service,
   $master_service = $puppet::params::master_service,
 ) inherits puppet::params {
+  Class['puppet::install']   ~> Class['puppet::service']
   Class['puppet::configure'] ~> Class['puppet::service']
 
   validate_bool( $master )

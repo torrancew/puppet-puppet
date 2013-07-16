@@ -42,9 +42,14 @@ class puppet::install(
   validate_string( $terminus_version )
 
   package {
-    'puppet':
-      name   => $package,
+    'puppet-common':
+      name   => "${package}-common",
       ensure => $version;
+
+    'puppet':
+      name    => $package,
+      ensure  => $version,
+      require => Package['puppet-common']
   }
 
   if $master {
@@ -54,8 +59,9 @@ class puppet::install(
         ensure => $version;
 
       'puppetdb-terminus':
-        name   => $terminus_package,
-        ensure => $terminus_version;
+        name    => $terminus_package,
+        ensure  => $terminus_version,
+        require => Package['puppetmaster'];
     }
   }
 }
