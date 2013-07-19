@@ -14,9 +14,11 @@
   modulepath  = /etc/puppet/environments/$environment/modules:/etc/puppet/modules
 
 <% if @master -%>
+<% report_list = @reports -%>
 [master]
 <% if @use_foreman -%>
   # Foreman Integration
+<% report_list << 'foreman' -%>
   autosign       = $confdir/autosign.conf { owner = service, group = service, mode = 664 }
   node_terminus  = exec
   external_nodes = /etc/puppet/foreman_node.rb
@@ -24,12 +26,11 @@
 <% end # if @use_foreman -%>
 <% if @use_puppetdb -%>
   # PuppetDB Integration
+<% report_list << 'puppetdb' -%>
   storeconfigs         = true
   storeconfigs_backend = puppetdb
 
-  reports = store,puppetdb<%= ',foreman' if @use_foreman %>
-<% else -%>
-  reports = store<%= ',foreman' if @use_foreman %>
 <% end # if @use_puppetdb -%>
+  reports = <%= report_list.join(',') %>
 
 <% end # if @master-%>

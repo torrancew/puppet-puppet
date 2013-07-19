@@ -31,12 +31,16 @@ class puppet::configure(
   $use_puppetdb  = $puppet::params::use_puppetdb,
   $puppetdb_host = $puppet::params::puppetdb_host,
   $puppetdb_port = $puppet::params::puppetdb_port,
+  $reports       = $puppet::params::reports,
 ) inherits puppet::params {
   Class['puppet::install'] -> Class['puppet::configure']
 
   validate_bool( $master )
   validate_bool( $use_foreman )
   validate_bool( $use_puppetdb )
+
+  validate_array($reports)
+
   validate_string( $environment )
   validate_string( $puppetdb_host )
 

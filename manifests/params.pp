@@ -41,6 +41,7 @@ class puppet::params {
   $puppetdb_host = 'puppetdb'
   $puppetdb_port = 8081
   $use_foreman   = false
+  $reports       = ['store']
 
   ## Service Settings
   $service        = 'puppet'
